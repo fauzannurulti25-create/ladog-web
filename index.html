@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jejak Petualangan - Keluarga 20</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Kalam:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'earth': {
+                            bg: '#F4F1EA',      /* Warm beige */
+                            green: '#1E3329',   /* Forest green */
+                            light: '#4A7C59',   /* Lighter leaf green */
+                            brown: '#8B5A2B',   /* Wood brown */
+                            tan: '#D4C5B0',     /* Sand/tan */
+                            dark: '#1E3329'     /* Deep forest */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        hand: ['Kalam', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #022510; color: #000000; overflow-x: hidden; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #060502; }
+        ::-webkit-scrollbar-thumb { background: #08311f; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #2C4C3B; }
+
+        /* Fade-in Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Card Hover Effects */
+        .member-card {
+            transition: all 0.3s ease;
+        }
+        .member-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            border-color: #092913;
+        }
+        .member-card img {
+            transition: transform 0.5s ease;
+        }
+        .member-card:hover img {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        /* Gallery Overlay */
+        .gallery-item { overflow: hidden; position: relative; border-radius: 1rem; cursor: pointer; }
+        .gallery-item img { transition: transform 0.7s ease; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(44, 76, 59, 0.9), transparent);
+            opacity: 0; transition: opacity 0.4s ease;
+            display: flex; align-items: flex-end; padding: 1.5rem;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+        .gallery-overlay h4 {
+            transform: translateY(20px); transition: transform 0.4s ease;
+        }
+        .gallery-item:hover .gallery-overlay h4 { transform: translateY(0); }
+    </style>
+</head>
+<body class="antialiased selection:bg-earth-light selection:text-white">
+
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 bg-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <a href="#" class="font-hand text-3xl font-bold text-white drop-shadow-lg tracking-wide hover:scale-105 transition-transform">
+                ladog nomade
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#hero" class="text-white hover:text-earth-tan font-semibold tracking-wide transition-colors drop-shadow">Beranda</a>
+                <a href="#members" class="text-white hover:text-earth-tan font-semibold tracking-wide transition-colors drop-shadow">member</a>
+                <a href="#gallery" class="text-white hover:text-earth-tan font-semibold tracking-wide transition-colors drop-shadow">jejak</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="ASET/background.jpeg" alt="Pemandangan Hutan" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-earth-dark mix-blend-multiply opacity-60"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4 max-w-3xl mx-auto reveal visible">
+            <h1 class="font-hand text-5xl md:text-7xl text-earth-bg font-bold mb-6 drop-shadow-2xl">
+                KEGIATAN<br>LADOGNOMADE
+            </h1>
+            <p class="text-lg md:text-2xl text-gray-200 mb-10 font-medium drop-shadow-lg">
+                Dua puluh kepala, dua puluh sifat, tapi satu tujuan saat ransel sudah di pundak. Ini adalah rumah bagi perjalanan kita.
+            </p>
+            <a href="#members" class="inline-block bg-earth-brown hover:bg-earth-light text-white font-bold py-3 px-8 rounded-full shadow-lg transition-all transform hover:-translate-y-1">
+                All member
+            </a>
+        </div>
+    </header>
+
+    <section id="members" class="py-20 bg-earth-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-hand text-4xl md:text-5xl text-earth-green font-bold mb-3">beberapa pasukan yang di segani atmin</h2>
+                <p class="text-earth-brown font-semibold text-lg max-w-2xl mx-auto">
+                    Dari yang paling tangguh di tanjakan sampai yang paling jago ngabisin perbekalan. Inilah wajah-wajah di balik setiap pendakian.
+                </p>
+            </div>
+
+            <!-- Grid 5 Kolom (Desktop), 4 Kolom (Tablet), 2 Kolom (Mobile) -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6" id="member-grid">
+                
+                <script>
+                    // === AREA EDIT ANGGOTA ===
+                    // Kamu bisa mengganti nama, role, link foto, dan link ig di bawah ini.
+                    // Tambahkan ig: "https://instagram.com/username_ig" untuk masing-masing anggota
+                    
+                    const membersData = [
+                        { nama: "fauzan nurul huda", role: "prajurit ngawi", foto: "ASET/ozan.jpeg", ig: "https://www.instagram.com/fauzannurulhuda28?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw==" },
+                        { nama: "Deriansyah", role: "atmin", foto: "ASET/ATMIN.png", ig: "https://www.instagram.com/deriiiiiiiiii__?utm_source=ig_web_button_share_sheet&rpxt=ZDNlZDc0MzIxNw==" },
+                        { nama: "Abdul mujib", role: "prajurit ngawi", foto: "ASET/boti.jpeg", ig: "https://www.instagram.com/nyariabdul?utm_source=ig_web_button_share_sheet&obrf=ZDNlZDc0MzIxNw==" },
+                        { nama: "Rizki hikmatullah", role: "Si bungsu", foto: "ASET/BUNGSU.png", ig: "https://www.instagram.com/riiizzz_28?utm_source=ig_web_button_share_sheet&cplk=ZDNlZDc0MzIxNw==" },
+                        { nama: "fitrah moch syarli", role: "chef", foto: "ASET/haji.jpeg", ig: "https://www.instagram.com/ftrhhhh__ms?utm_source=ig_web_button_share_sheet&cplk=ZDNlZDc0MzIxNw==" },
+                        { nama: "reza alamsyah", role: "Tensi", foto: "ASET/TENSI.png", ig: "https://www.instagram.com/rezaaalmsyh_?utm_source=ig_web_button_share_sheet&vrfl=ZDNlZDc0MzIxNw==" },
+                        { nama: "A Jamal asgaf", role: "Ahli supranatural", foto: "ASET/jamal.png",ig: "https://www.instagram.com/she_zigha2?utm_source=ig_web_button_share_sheet&srtk=ZDNlZDc0MzIxNw=="},
+                        { nama: "Anggi", role: "Dewa cekih", foto: "ASET/pegiw.jpeg", ig: "https://www.instagram.com/anggi_yans02?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" },
+                        { nama: "Faisal nasrullah", role: "rekan dewa cekih", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/faizalnasrullah00?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" },
+                        { nama: "Nurhardiansyah", role: "My lanceuk", foto: "ASET/lanceuk.jpeg", ig: "https://www.instagram.com/hardyy_02?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" },
+                        { nama: "rafli", role: "", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/raflialgifari025?utm_source=ig_web_button_share_sheet&obrf=ZDNlZDc0MzIxNw==" },
+                        { nama: "Ahamad sukiman ", role: "suki jinak", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/bumm_________?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" },
+                        { nama: "Amar mardiansyah", role: "abang abangan starboy", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/amar_m_09?utm_source=ig_web_button_share_sheet&xtok=ZDNlZDc0MzIxNw==" },
+                        { nama: "azmi mubarok", role: "Gladiator cinta", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/mhmdazmi1410?utm_source=ig_web_button_share_sheet&dlrf=ZDNlZDc0MzIxNw==" },
+                        { nama: "firdaus", role: "pelari kalcer", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/mf_freakyfir?utm_source=ig_web_button_share_sheet&rpxt=ZDNlZDc0MzIxNw==" },
+                        { nama: "azis", role: "", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/aziz.abdul_7?utm_source=ig_web_button_share_sheet&mdxt=ZDNlZDc0MzIxNw==" },
+                        { nama: "Surya", role: "ambasador jharum", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/bukanuyakuya?utm_source=ig_web_button_share_sheet&psln=ZDNlZDc0MzIxNw==" },
+                        { nama: "Amri", role: "pengembara cinta", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/aboks_skyy02?utm_source=ig_web_button_share_sheet&exln=ZDNlZDc0MzIxNw==" },
+                        { nama: "Aril", role: "peterpan KW 12", foto: "ASET/pict.jpeg", ig: "https://www.instagram.com/syhrl.arfn_?utm_source=ig_web_button_share_sheet&obrf=ZDNlZDc0MzIxNw==" },
+                        { nama: "????", role: "????", foto: "https://placehold.co/200x200/D4C5B0/333333?text=FOTO+20", ig: "https://instagram.com/" }
+                    ];
+
+                    const grid = document.getElementById('member-grid');
+                    
+                    membersData.forEach((member, index) => {
+                        const delay = (index % 5) * 100; // Animasi tampil bergantian
+                        
+                        // Membungkus card dengan tag <a> untuk menjadikannya link
+                        const html = `
+                            <a href="${member.ig}" target="_blank" rel="noopener noreferrer" class="block cursor-pointer">
+                                <div class="member-card reveal bg-white rounded-2xl p-4 shadow-sm border-2 border-transparent text-center h-full" style="transition-delay: ${delay}ms;">
+                                    <div class="w-20 h-20 md:w-24 md:h-24 mx-auto rounded-full overflow-hidden mb-3 border-4 border-earth-bg">
+                                        <img src="${member.foto}" alt="${member.nama}" class="w-full h-full object-cover">
+                                    </div>
+                                    <h3 class="font-bold text-earth-green text-lg leading-tight mb-1">${member.nama}</h3>
+                                    <p class="text-xs text-earth-brown font-bold uppercase tracking-wider mb-2">${member.role}</p>
+                                </div>
+                            </a>
+                        `;
+                        grid.insertAdjacentHTML('beforeend', html);
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-20 bg-[#E8E4D9]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="font-hand text-4xl md:text-5xl text-earth-green font-bold mb-3">Jejak & Cerita</h2>
+                <p class="text-earth-brown font-semibold text-lg">Moment all member.</p>
+            </div>
+
+            <!-- Masonry-style Grid untuk Galeri -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[250px]">
+                
+                <div class="gallery-item reveal lg:row-span-2 lg:col-span-2 rounded-2xl">
+                    <img src="ASET/sama sama.jpeg" alt="Camp" class="w-full h-full object-cover">
+                    <div class="gallery-overlay rounded-2xl">
+                        <h4 class="text-white font-hand text-3xl">CAMP</h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal rounded-2xl" style="transition-delay: 100ms;">
+                    <img src="      " alt="Hike" class="w-full h-full object-cover">
+                    <div class="gallery-overlay rounded-2xl">
+                        <h4 class="text-white font-hand text-2xl">      </h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal rounded-2xl" style="transition-delay: 200ms;">
+                    <img src="      " alt="Cooking" class="w-full h-full object-cover">
+                    <div class="gallery-overlay rounded-2xl">
+                        <h4 class="text-white font-hand text-2xl">       </h4>
+                    </div>
+                </div>
+
+                <div class="gallery-item reveal lg:col-span-2 rounded-2xl" style="transition-delay: 300ms;">
+                    <img src="           " alt="Rest" class="w-full h-full object-cover">
+                    <div class="gallery-overlay rounded-2xl">
+                        <h4 class="text-white font-hand text-3xl">       </h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-earth-dark text-earth-tan py-12 text-center">
+        <div class="max-w-4xl mx-auto px-4 reveal">
+            <h3 class="font-hand text-3xl mb-4 text-white">Ransel Siap, Kapan Kita Berangkat Lagi?</h3>
+            <p class="mb-8 opacity-80 text-sm">20 Kepala, 1 Perjalanan. Hutan selalu punya cara menyatukan kita.</p>
+            <div class="w-16 h-1 bg-earth-brown mx-auto rounded mb-8"></div>
+            <p class="text-xs opacity-60 uppercase tracking-widest">© 2026 Rimba & Tawa Hiking Group</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Navbar Background Change on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    navbar.classList.add('bg-earth-dark', 'shadow-xl');
+                    navbar.classList.remove('bg-transparent', 'py-4');
+                    navbar.classList.add('py-2');
+                } else {
+                    navbar.classList.add('bg-transparent', 'py-4');
+                    navbar.classList.remove('bg-earth-dark', 'shadow-xl', 'py-2');
+                }
+            });
+
+            // Intersection Observer for scroll animations (Fade up)
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.1, 
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => {
+                revealObserver.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
