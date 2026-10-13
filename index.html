@@ -85,19 +85,29 @@
         }
         .gallery-item:hover .gallery-overlay h4 { transform: translateY(0); }
 
-        /* Trik untuk menyembunyikan header profil Instagram di dalam iframe */
-        .ig-crop-wrapper {
+        /* Trik untuk merotasi video dan menyembunyikan header/footer Instagram */
+        .ig-landscape-wrapper {
             position: relative;
             width: 100%;
-            height: 100%;
+            /* Atur tinggi kotak penampung untuk menyesuaikan dengan video yang diputar */
+            height: 350px; 
             overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0D1A12;
         }
-        .ig-crop-wrapper iframe {
+        
+        .ig-landscape-wrapper iframe {
             position: absolute;
-            top: -55px;
-            left: 0;
-            width: 100%;
-            height: calc(100% + 55px);
+            /* Karena diputar 90 derajat, width dan height ditukar logikanya */
+            width: 600px;  /* Ini akan jadi tinggi setelah diputar */
+            height: 400px; /* Ini akan jadi lebar setelah diputar */
+            
+            /* Rotasi video 90 derajat */
+            transform: rotate(-90deg) scale(1.2); 
+            /* scale(1.2) berguna untuk memperbesar video agar teks di atas/bawah (sekarang jadi di kiri/kanan) terpotong/hilang */
+            
             border: none;
         }
     </style>
@@ -248,9 +258,9 @@
                     </div>
                 </div>
 
-                <!-- Video Instagram dengan Header Profil yang Disembunyikan (Clean) -->
-                <div class="gallery-item reveal lg:row-span-2 rounded-2xl shadow-lg bg-elegant-card overflow-hidden" style="transition-delay: 300ms;">
-                    <div class="ig-crop-wrapper">
+                <!-- Video Instagram yang diputar ke format lanskap dan melebarkan kolom -->
+                <div class="gallery-item reveal lg:col-span-2 rounded-2xl shadow-lg bg-elegant-card overflow-hidden" style="transition-delay: 300ms;">
+                    <div class="ig-landscape-wrapper">
                         <iframe src="https://www.instagram.com/reel/DaadyHGTE_z/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                     </div>
                 </div>
