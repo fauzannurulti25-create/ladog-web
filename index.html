@@ -12,7 +12,7 @@
                 extend: {
                     colors: {
                         'elegant': {
-                            bg: '#050505',       /* Hitam pekat */
+                            bg: '#050505',      /* Hitam pekat */
                             section: '#0A140E',  /* Hijau sangat gelap untuk background */
                             card: '#0D1A12',     /* Hijau gelap untuk kartu */
                             green: '#10B981',    /* Hijau zamrud (Emerald) terang elegan */
@@ -58,7 +58,7 @@
         }
         .member-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.3); /* Cahaya hijau elegan */
+            box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.3);
             border-color: #10B981;
         }
         .member-card img {
@@ -84,6 +84,22 @@
             color: #10B981;
         }
         .gallery-item:hover .gallery-overlay h4 { transform: translateY(0); }
+
+        /* Trik untuk menyembunyikan header profil Instagram di dalam iframe */
+        .ig-crop-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .ig-crop-wrapper iframe {
+            position: absolute;
+            top: -55px;
+            left: 0;
+            width: 100%;
+            height: calc(100% + 55px);
+            border: none;
+        }
     </style>
 </head>
 <body class="antialiased selection:bg-elegant-green selection:text-white">
@@ -94,23 +110,20 @@
                 ladog nomade
             </a>
            <div class="hidden md:flex items-center space-x-6">
-    <!-- Menggunakan index.html#... agar jika di-klik dari halaman lain, bisa kembali ke halaman utama -->
-    <a href="index.html#hero" class="text-white hover:text-elegant-green font-semibold tracking-wide transition-colors drop-shadow">Beranda</a>
-    <a href="index.html#members" class="text-white hover:text-elegant-green font-semibold tracking-wide transition-colors drop-shadow">Member</a>
-    <a href="index.html#gallery" class="text-white hover:text-elegant-green font-semibold tracking-wide transition-colors drop-shadow">Jejak</a>
-    
-    <!-- INI TOMBOL BARU UNTUK PINDAH HALAMAN -->
-    <a href="cerita.html" class="bg-elegant-green text-black px-5 py-2 rounded-full font-bold hover:scale-105 hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)]">
-        akan datang 
-    </a>
-</div>
+                <a href="index.html#hero" class="text-white hover:text-elegant-green font-semibold tracking-wide transition-colors drop-shadow">Beranda</a>
+                <a href="index.html#members" class="text-white hover:text-elegant-green font-semibold tracking-wide transition-colors drop-shadow">Member</a>
+                <a href="index.html#gallery" class="text-white hover:text-elegant-green font-semibold tracking-wide transition-colors drop-shadow">Jejak</a>
+                
+                <a href="cerita.html" class="bg-elegant-green text-black px-5 py-2 rounded-full font-bold hover:scale-105 hover:bg-emerald-400 transition-all shadow-[0_0_15px_rgba(16,185,129,0.4)]">
+                    akan datang 
+                </a>
+            </div>
         </div>
     </nav>
 
     <header id="hero" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
             <img src="ASET/ph.jpg" alt="Pemandangan Hutan" class="w-full h-full object-cover">
-            <!-- Overlay diubah agar lebih pekat menyatu dengan tema gelap -->
             <div class="absolute inset-0 bg-[#000000] opacity-70"></div> 
             <div class="absolute inset-0 bg-gradient-to-t from-elegant-bg to-transparent"></div>
         </div>
@@ -149,7 +162,7 @@
                         { nama: "Rizki Hikmatullah", role: "Si Bungsu", foto: "ASET/BUNGSU.png", ig: "https://www.instagram.com/riiizzz_28" },
                         { nama: "Fitrah Moch Syarli", role: "Chef", foto: "ASET/haji.jpeg", ig: "https://www.instagram.com/ftrhhhh__ms" },
                         { nama: "Reza Alamsyah", role: "Tensi", foto: "ASET/TENSI.png", ig: "https://www.instagram.com/rezaaalmsyh_" },
-                        { nama: "A Jamal Asgaf", role: "Ahli Supranatural", foto: "ASET/jamal.png",ig: "https://www.instagram.com/she_zigha2"},
+                        { nama: "A Jamal Asgaf", role: "Ahli Supranatural", foto: "ASET/jamal.png", ig: "https://www.instagram.com/she_zigha2"},
                         { nama: "Anggi", role: "Dewa Cekih", foto: "ASET/pegiw.jpeg", ig: "https://www.instagram.com/anggi_yans02" },
                         { nama: "Faisal Nasrullah", role: "Rekan Dewa Cekih", foto: "ASET/omad.png", ig: "https://www.instagram.com/faizalnasrullah00" },
                         { nama: "Nurhardiansyah", role: "My Lanceuk", foto: "ASET/lanceuk.jpeg", ig: "https://www.instagram.com/hardyy_02" },
@@ -227,10 +240,18 @@
                         <h4 class="font-hand text-3xl font-bold tracking-wider">camp </h4>
                     </div>
                 </div>
+                
                 <div class="gallery-item reveal rounded-2xl shadow-lg" style="transition-delay: 200ms;">
                     <img src="ASET/background.jpeg" alt="Cooking" class="w-full h-full object-cover">
                     <div class="gallery-overlay rounded-2xl">
                         <h4 class="font-hand text-2xl font-bold tracking-wider">blusukan random</h4>
+                    </div>
+                </div>
+
+                <!-- Video Instagram dengan Header Profil yang Disembunyikan (Clean) -->
+                <div class="gallery-item reveal lg:row-span-2 rounded-2xl shadow-lg bg-elegant-card overflow-hidden" style="transition-delay: 300ms;">
+                    <div class="ig-crop-wrapper">
+                        <iframe src="https://www.instagram.com/reel/DaadyHGTE_z/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                     </div>
                 </div>
 
@@ -249,7 +270,6 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Navbar Background Change on Scroll
             const navbar = document.getElementById('navbar');
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 80) {
@@ -262,9 +282,7 @@
                 }
             });
 
-            // Intersection Observer for scroll animations (Fade up)
             const revealElements = document.querySelectorAll('.reveal');
-            
             const revealOptions = {
                 threshold: 0.1, 
                 rootMargin: "0px 0px -50px 0px"
