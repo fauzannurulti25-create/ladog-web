@@ -33,13 +33,11 @@
     <style>
         body { background-color: #050505; color: #F3F4F6; overflow-x: hidden; }
         
-        /* Custom Scrollbar bernuansa hijau gelap */
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #022510; border-radius: 4px; border: 1px solid #10B981; }
         ::-webkit-scrollbar-thumb:hover { background: #10B981; }
 
-        /* Fade-in Animation */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -50,7 +48,6 @@
             transform: translateY(0);
         }
 
-        /* Card Hover Effects dengan Green Glow */
         .member-card {
             transition: all 0.3s ease;
             background: linear-gradient(145deg, #0D1A12, #050A07);
@@ -61,14 +58,9 @@
             box-shadow: 0 15px 30px -5px rgba(16, 185, 129, 0.3);
             border-color: #10B981;
         }
-        .member-card img {
-            transition: transform 0.5s ease;
-        }
-        .member-card:hover img {
-            transform: scale(1.1) rotate(3deg);
-        }
+        .member-card img { transition: transform 0.5s ease; }
+        .member-card:hover img { transform: scale(1.1) rotate(3deg); }
 
-        /* Gallery Overlay */
         .gallery-item { overflow: hidden; position: relative; border-radius: 1rem; cursor: pointer; border: 1px solid rgba(16, 185, 129, 0.2); }
         .gallery-item img { transition: transform 0.7s ease; }
         .gallery-item:hover img { transform: scale(1.05); }
@@ -85,29 +77,23 @@
         }
         .gallery-item:hover .gallery-overlay h4 { transform: translateY(0); }
 
-        /* Trik untuk merotasi video dan menyembunyikan header/footer Instagram */
-        .ig-landscape-wrapper {
+        /* --- TRIK CSS CROP ATAS (PROFIL) & BAWAH (KOMENTAR) UNTUK IG --- */
+        .ig-clean-wrapper {
             position: relative;
             width: 100%;
-            /* Atur tinggi kotak penampung untuk menyesuaikan dengan video yang diputar */
-            height: 350px; 
+            height: 100%;
+            min-height: 400px;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background-color: #0D1A12;
+            border-radius: 1rem;
         }
-        
-        .ig-landscape-wrapper iframe {
+
+        .ig-clean-wrapper iframe {
             position: absolute;
-            /* Karena diputar 90 derajat, width dan height ditukar logikanya */
-            width: 600px;  /* Ini akan jadi tinggi setelah diputar */
-            height: 400px; /* Ini akan jadi lebar setelah diputar */
-            
-            /* Rotasi video 90 derajat */
-            transform: rotate(-90deg) scale(1.2); 
-            /* scale(1.2) berguna untuk memperbesar video agar teks di atas/bawah (sekarang jadi di kiri/kanan) terpotong/hilang */
-            
+            top: -55px; /* Menarik ke atas untuk menghilangkan profil IG */
+            left: -5%; /* Sedikit diperlebar ke kiri */
+            width: 110%; /* Melebarkan iframe sedikit untuk memotong garis tepi IG */
+            height: calc(100% + 120px); /* Menarik lebih panjang ke bawah agar area komentar tertutup batas kotak */
             border: none;
         }
     </style>
@@ -156,14 +142,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
                 <h2 class="font-hand text-4xl md:text-5xl text-elegant-green font-bold mb-3 drop-shadow-md">beberapa pasukan yang disegani atmin</h2>
-                <p class="text-elegant-muted font-semibold text-lg max-w-2xl mx-auto">
-                    Dari yang lawak di jalan sampai yang ahli supranatural. Inilah wajah-wajah di balik setiap pendakian.
-                </p>
             </div>
-
-            <!-- Grid Member -->
             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6" id="member-grid">
-                
                 <script>
                     const membersData = [
                         { nama: "Fauzan Nurul Huda", role: "Prajurit ngawi", foto: "ASET/zan.png", ig: "https://www.instagram.com/fauzannurulhuda28" },
@@ -187,14 +167,11 @@
                         { nama: "Aril", role: "Peterpan KW 12", foto: "ASET/ril.png", ig: "https://www.instagram.com/syhrl.arfn_" },
                         { nama: "Muslih", role: "Si Kucing", foto: "ASET/cing.png", ig: "https://instagram.com/" }
                     ];
-
                     const grid = document.getElementById('member-grid');
-                    
                     membersData.forEach((member, index) => {
                         const delay = (index % 5) * 100;
-                        
                         const html = `
-                            <a href="${member.ig}" target="_blank" rel="noopener noreferrer" class="block cursor-pointer h-full">
+                            <a href="${member.ig}" target="_blank" class="block cursor-pointer h-full">
                                 <div class="member-card reveal rounded-2xl p-4 shadow-sm text-center h-full flex flex-col justify-between" style="transition-delay: ${delay}ms;">
                                     <div>
                                         <div class="w-20 h-20 md:w-24 md:h-24 mx-auto rounded-full overflow-hidden mb-4 border-[3px] border-elegant-green shadow-[0_0_15px_rgba(16,185,129,0.3)]">
@@ -220,7 +197,6 @@
                 <p class="text-elegant-muted font-semibold text-lg">Moment all member.</p>
             </div>
 
-            <!-- Masonry-style Grid untuk Galeri -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[250px]">
                 
                 <div class="gallery-item reveal lg:row-span-2 lg:col-span-2 rounded-2xl shadow-lg">
@@ -258,9 +234,9 @@
                     </div>
                 </div>
 
-                <!-- Video Instagram yang diputar ke format lanskap dan melebarkan kolom -->
-                <div class="gallery-item reveal lg:col-span-2 rounded-2xl shadow-lg bg-elegant-card overflow-hidden" style="transition-delay: 300ms;">
-                    <div class="ig-landscape-wrapper">
+                <!-- VIDEO IG VERTIKAL BERSIH: Profil dipotong, komentar dipotong, posisi berdiri -->
+                <div class="gallery-item reveal row-span-2 rounded-2xl shadow-lg bg-elegant-card overflow-hidden" style="transition-delay: 300ms;">
+                    <div class="ig-clean-wrapper">
                         <iframe src="https://www.instagram.com/reel/DaadyHGTE_z/embed" frameborder="0" scrolling="no" allowtransparency="true"></iframe>
                     </div>
                 </div>
@@ -291,24 +267,15 @@
                     navbar.classList.remove('bg-[#050A07]', 'shadow-[0_4px_20px_rgba(0,0,0,0.8)]', 'py-2', 'border-b', 'border-elegant-green/20');
                 }
             });
-
             const revealElements = document.querySelectorAll('.reveal');
-            const revealOptions = {
-                threshold: 0.1, 
-                rootMargin: "0px 0px -50px 0px"
-            };
-
-            const revealObserver = new IntersectionObserver((entries, observer) => {
+            const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
                     }
                 });
-            }, revealOptions);
-
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
+            }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+            revealElements.forEach(el => revealObserver.observe(el));
         });
     </script>
 </body>
